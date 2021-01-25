@@ -1,0 +1,24 @@
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+import pandas as pd
+driver = webdriver.Chrome(ChromeDriverManager().install())
+driver.maximize_window()
+
+
+url = 'https://www.bnr.ro/files/xml/nbrfxrates2019.htm'
+driver.get(url)
+
+#//*[@id="Data_table"]/table
+list_date = driver.find_element_by_xpath('//*[@id="Data_table"]/table').text.split('\n')
+
+# for i in get_element:
+#     list_date.append(i.text)
+date_cursvalutar = {}
+j = 1
+for i in range(33):
+    print(list_date[33 * i])
+    date_cursvalutar[list_date[33 * i]] = list_date[i*33+1:i*33+33]
+nr_randuri = int(len(list_date)/33)
+
+lista_lista = list_date[1:33]
+print(date_cursvalutar)
