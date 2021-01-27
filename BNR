@@ -1,6 +1,9 @@
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
+import dataframe
+#from xlswriter import Workbook
+#import excel.writer
 driver = webdriver.Chrome(ChromeDriverManager().install())
 driver.maximize_window()
 
@@ -22,3 +25,10 @@ nr_randuri = int(len(list_date)/33)
 
 lista_lista = list_date[1:33]
 print(date_cursvalutar)
+
+def excel_write():
+    df = pd.DataFrame({'Date BNR'})
+    writer = pd.ExcelWriter('Date BNR.xlsx', 'xlsxwriter')
+    df.to_excel(writer)
+    writer.save()
+excel_write()
